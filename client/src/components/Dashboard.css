@@ -1,0 +1,31 @@
+.dashboard-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../assets/What to know about Deaf culture.jpeg'); /* Adjust path */
+    background-size: cover;
+    background-position: center;
+    animation: zoomBackground 20s infinite alternate ease-in-out;
+  }
+  
+  .content {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+    max-width: 24rem;
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Zoom effect for background */
+  @keyframes zoomBackground {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.1);
+    }
+  }
+  
