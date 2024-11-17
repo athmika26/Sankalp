@@ -5,19 +5,28 @@ const authRoutes = require('./routes/auth');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const multer = require('multer'); // File upload handling
-const fs = require('fs'); // To handle file operations
-const path = require('path'); // To manage file paths
+const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
+const axios = require('axios'); // For Hugging Face API calls
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const allowedOrigins = ['http://localhost:5173'];
 
+// Ensure uploads directory exists
+const uploadDir = 'uploads';
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir);
+}
+
 // Configure CORS
-app.use(cors({
-    origin: allowedOrigins,
-    credentials: true
-}));
+app.use(
+    cors({
+        origin: allowedOrigins,
+        credentials: true,
+    })
+);
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,60 +34,88 @@ app.use(express.json());
 app.use(cookieParser());
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URI, { dbName: 'sankalp' })
+mongoose
+    .connect(process.env.MONGO_URI, { dbName: 'sankalp' })
     .then(() => console.log('Connected to MongoDB'))
     .catch((error) => console.error('MongoDB connection error:', error));
 
 // Set up multer for file uploads
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads/'); // Path where audio files will be stored
+        cb(null, uploadDir);
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname)); // Use timestamp as file name
-    }
+        cb(null, Date.now() + path.extname(file.originalname));
+    },
 });
 
 const upload = multer({ storage });
 
 // Audio Summary Route
-app.post('/api/audio-summary', upload.single('audio'), async (req, res) => {
-    if (!req.file) {
-        return res.status(400).json({ error: 'No audio file uploaded.' });
+app.post('/api/audio-text', upload.single('audio'), async (req, res) => {
+    let audioPath;
+
+    if (req.file) {
+        // File upload case
+        audioPath = req.file.path;
+    } else if (req.body.audioURL) {
+        // URL case
+        audioPath = req.body.audioURL;
+    } else {
+        return res.status(400).json({ error: 'No audio file or URL provided.' });
     }
 
-    const audioPath = req.file.path;
-
     try {
-        // Placeholder: Simulate audio-to-text conversion (replace with actual logic)
-        const transcribedText = await simulateAudioToTextConversion(audioPath);
+        // Step 1: Perform Audio-to-Text Transcription (using local file or URL)
+        console.log(audioPath);
+        const transcribedText = await performAudioTranscription(audioPath);
+        console.log(transcribedText);
+        // Step 2: Perform Text Summarization
+        const summary = await summarizeText(transcribedText);
+        console.log(summary);
+        if (req.file) fs.unlinkSync(audioPath); // Clean up uploaded file if applicable
 
-        // Placeholder: Simulate text summarization (replace with actual logic)
-        const summary = simulateTextSummarization(transcribedText);
-
-        // Clean up the uploaded file after processing
-        fs.unlinkSync(audioPath);
-
-        return res.json({ summary });
+        return res.json({ transcription: transcribedText, summary });
     } catch (error) {
         console.error('Error during audio processing:', error);
         res.status(500).json({ error: 'Failed to process audio.' });
     }
 });
 
-// Mock functions for transcription and summarization
-async function simulateAudioToTextConversion(audioPath) {
-    // Simulate transcription logic here, e.g., using Google Cloud Speech-to-Text or similar service
-    // For now, return a mocked transcription
-    return "This is a placeholder transcription of the audio content. It will be replaced by actual transcription logic.";
+// Function to perform audio transcription
+async function performAudioTranscription(audioPath) {
+    try {
+        // Replace with real transcription logic or API
+        return "Transcribed text from audio file."; // Placeholder response
+    } catch (error) {
+        console.error('Error in transcription:', error);
+        throw new Error('Audio transcription failed.');
+    }
 }
 
-function simulateTextSummarization(text) {
-    // Placeholder: Summarize the transcription (you can use libraries like OpenAI API for actual summarization)
-    return text.slice(0, 100) + "..."; // Return first 100 characters as a mock summary
+// Function to summarize text using Hugging Face API
+async function summarizeText(text) {
+    try {
+        const response = await axios.post(
+            'https://api-inference.huggingface.co/models/facebook/bart-large-cnn',
+            { inputs: text },
+            {
+                headers: { Authorization: `Bearer ${process.env.HUGGING_FACE_API_TOKEN}` },
+            }
+        );
+
+        if (response.data && response.data[0]) {
+            return response.data[0].summary_text;
+        }
+        return "Summarization failed."; // Fallback message
+    } catch (error) {
+        console.error('Error in summarization:', error);
+        throw new Error('Text summarization failed.');
+    }
 }
 
 // Routes
 app.use('/auth', authRoutes);
 
+// Start the server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -6,7 +6,8 @@ import SignupPage from './components/SignUp';
 import LoginPage from './components/Login';
 import Dashboard from './components/Dashboard';
 import AudioTextConversion from './components/AudioTextConversion';
-// import AudioToText from './components/AudioToText';
+import AudioToText from './components/AudioToText';
+import TTS from './components/TextToAudio';
 
 function App() {
     return (
@@ -17,8 +18,8 @@ function App() {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/audio-text-conversion" element={<AudioTextConversion />} />
-                {/* <Route path="/audio-text" element={<AudioToText />} /> */}
-
+                <Route path="/audio-text" element={<AudioToText />} />
+                <Route path='/text-audio' element={<TTS />}></Route>
             </Routes>
         </Router>
     );
