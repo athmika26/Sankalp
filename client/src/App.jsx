@@ -5,6 +5,10 @@ import LandingPage from './components/LandingPage';
 import SignupPage from './components/SignUp';
 import LoginPage from './components/Login';
 import Dashboard from './components/Dashboard';
+import Games from './components/Games';
+import SpellingWordSearch from './components/SpellingWordSearch';
+import MemoryMatchGarden from './components/MemoryMatchGarden';
+import MathQuest from './components/MathQuest';
 import AudioTextConversion from './components/AudioTextConversion';
 // import AudioToText from './components/AudioToText';
 
@@ -16,6 +20,10 @@ function App() {
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/games" element={<Games />} /> {/* Route to games component */}
+                <Route path="/games/spelling-word-search" element={<SpellingWordSearch />} />
+                <Route path="/games/memory-match-garden" element={<MemoryMatchGarden />} />
+                <Route path="/games/math-quest" element={<MathQuest />} />
                 <Route path="/audio-text-conversion" element={<AudioTextConversion />} />
                 {/* <Route path="/audio-text" element={<AudioToText />} /> */}
 

@@ -12,7 +12,7 @@ const LandingPage = () => {
                     <button className="px-6 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600">Sign Up</button>
                 </Link>
                 <Link to="/login">
-                    <button className="px-6 py-2 text-blue-500 border border-blue-500 rounded-lg hover:bg-blue-500 hover:text-white">Login</button>
+                    <button className="px-6 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600">Login</button>
                 </Link>
             </div>
         </div>

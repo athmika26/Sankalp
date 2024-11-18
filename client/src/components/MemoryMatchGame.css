@@ -1,0 +1,151 @@
+/* General styling */
+.game-container {
+    text-align: center;
+    margin: 50px auto;
+    width: 400px;
+    font-family: Arial, sans-serif;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.card {
+    width: 80px;
+    height: 80px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.card.flipped {
+    background-color: #2b6cb0;
+    color: white;
+    transform: scale(1.1);
+}
+
+.card.matched {
+    background-color: #4caf50;
+    color: white;
+    pointer-events: none;
+    transform: scale(1.1);
+}
+
+.card:hover:not(.flipped):not(.matched) {
+    background-color: #e0e0e0;
+}
+
+/* Game info */
+.game-info {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Score and Game Over Messages */
+.score {
+    font-size: 1.5rem;
+    color: #4caf50;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.game-over {
+    font-size: 1.3rem;
+    color: white;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Buttons */
+button {
+    padding: 12px 25px;
+    background-color: #2b6cb0;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1e4c73;
+}
+
+button:active {
+    background-color: #174c6e;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .game-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .game-info {
+        font-size: 1rem;
+    }
+
+    .score {
+        font-size: 1.2rem;
+    }
+
+    .game-over {
+        font-size: 1.1rem;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}
+.guidelines-section {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .guidelines-toggle-button {
+    margin-bottom: 10px;
+  }
+  
+  .audio-button, .mute-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .audio-button:hover, .mute-button:hover {
+    background-color: #0056b3;
+  }
+  

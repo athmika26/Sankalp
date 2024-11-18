@@ -16,8 +16,10 @@
     "@mui/icons-material": "^6.1.6",
     "@mui/material": "^6.1.6",
     "axios": "^1.7.7",
+    "konva": "^9.3.16",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-konva": "^18.2.10",
     "react-router-dom": "^6.28.0"
   },
   "devDependencies": {
