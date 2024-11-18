@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@google-cloud/speech": "^6.7.0",
@@ -20,7 +21,10 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-konva": "^18.2.10",
-    "react-router-dom": "^6.28.0"
+    "react-router-dom": "^6.28.0",
+    "react-speech-kit": "^3.0.1",
+    "react-speech-recognition": "^3.10.0",
+    "regenerator-runtime": "^0.14.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
