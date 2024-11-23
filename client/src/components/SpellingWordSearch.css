@@ -1,0 +1,138 @@
+/* Basic styling for the game container */
+.game-container {
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f4f4f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #2b6cb0;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.board-container {
+    display: inline-block;
+    margin-top: 20px;
+    border: 2px solid #2b6cb0;
+    border-radius: 10px;
+}
+
+.board-row {
+    display: flex;
+}
+
+.board-cell {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.board-cell:hover {
+    background-color: #f0f0f0;
+}
+
+.board-cell.selected {
+    background-color: #2b6cb0;
+    color: white;
+}
+
+.game-info {
+    margin-top: 20px;
+}
+
+.game-info ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.restart-button,
+.submit-button {
+    background-color: #4a5568;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.125rem;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.restart-button:hover,
+.submit-button:hover {
+    background-color: #2d3748;
+}
+
+/* Adding space between the buttons */
+.restart-button {
+    margin-right: 10px; /* Adds space between restart and submit buttons */
+}
+
+.submit-button {
+    margin-top: 20px; /* Space from game info or restart button */
+}
+
+.game-over {
+    margin-top: 20px;
+    background-color: #f44336;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.2rem; /* Make it large enough */
+  }
+  .guidelines-toggle-button {
+  padding: 8px 12px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.guidelines-section {
+  background-color: #f9f9f9;
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.audio-button {
+  padding: 8px 12px;
+  font-size: 16px;
+  background-color: #ff7f50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.audio-button:hover {
+  background-color: #ff6347;
+}
+
+.guidelines-section h2 {
+  color: #007bff;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.guidelines-toggle-button:hover {
+  background-color: #0056b3;
+}
