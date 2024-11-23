@@ -1,0 +1,83 @@
+/* MathsQuestGame.css */
+.game-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .question-container {
+    margin: 20px 0;
+  }
+  
+  input {
+    padding: 5px;
+    color: white;
+    font-size: 1.2rem;
+    width: 100px;
+    margin-right: 10px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #ddd;
+  }
+  
+  button:hover:not(:disabled) {
+    background-color: #45a049;
+  }
+  
+  .feedback {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
+  .game-over {
+    font-size: 1.5rem;
+    color: white;
+    margin-top: 20px;
+  }
+  
+  .game-over button {
+    background-color: #2196f3;
+  }
+  
+  .game-over button:hover {
+    background-color: #1e88e5;
+  }
+  .guidelines-toggle button:hover {
+    background-color: #007bff; /* Darker blue */
+  }
+  
+  .guidelines-container {
+    margin-top: 20px;
+    border: 2px solid #007bff;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
+  .guidelines-box h3 {
+    color: #007bff;
+  }
+  
+  .guidelines-box button {
+    background-color: #007bff;
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .guidelines-box button:hover {
+    background-color: #45a049; /* Change color on hover */
+  } 

@@ -1,0 +1,168 @@
+/* General Body Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Container for Game List - Centering changes */
+  .game-list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 40px;
+    background-color: #fafafa;
+    justify-items: center;
+    border-radius: 12px;
+    max-width: 1200px; /* Ensure the container doesn’t stretch too wide */
+    width: 100%;
+    margin: auto; /* Center the whole container in the viewport */
+  }
+  
+  /* Game Cards */
+  .game-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+    width: 100%;
+    max-width: 320px; /* Ensures the cards are not too wide */
+    margin: 0 auto; /* Center the card within its container */
+  }
+  
+  /* Hover Effect for Game Cards */
+  .game-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    background-color: #edf2f7;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  }
+  
+  /* Game Title */
+  .game-card h2 {
+    color: #2b6cb0;
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+  }
+  
+  /* Game Description */
+  .game-card p {
+    color: #4a5568;
+    font-size: 1rem;
+    margin-top: 12px;
+    line-height: 1.6;
+    transition: color 0.3s ease;
+  }
+  
+  /* Hover Effect for Game Description */
+  .game-card:hover p {
+    color: #2b6cb0; /* Change description color on hover */
+  }
+  
+  /* Back Button */
+  .back-button {
+    background-color: #4a5568;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.125rem;
+    text-align: center;
+    margin: 20px auto;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+    width: auto;
+  }
+  
+  /* Hover Effect for Back Button */
+  .back-button:hover {
+    background-color: #2d3748;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Game Description Section */
+  .game-description {
+    color: #718096;
+    font-size: 1rem;
+    margin-top: 10px;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  /* Headings for Titles and Text */
+  .text-3xl {
+    color: #2b6cb0;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* Game Content Box (For Individual Game Pages) */
+  .game-content {
+    margin-top: 20px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: auto;
+    font-size: 1.125rem;
+    color: #4a5568;
+  }
+  
+  /* Stage Container (For Game Canvas) */
+  .stage-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+  }
+  
+  /* Large Text for Instructions or Info */
+  .text-lg {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #2d3748;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .game-list-container {
+      grid-template-columns: 1fr;
+      padding: 20px;
+    }
+  
+    .back-button {
+      width: 100%;
+    }
+  
+    .game-card {
+      padding: 15px;
+    }
+  
+    .game-description {
+      font-size: 0.9rem;
+      padding: 15px;
+    }
+  }
+  
