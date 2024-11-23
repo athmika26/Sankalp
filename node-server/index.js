@@ -71,7 +71,7 @@ app.post('/api/audio-text', upload.single('audio'), async (req, res) => {
         const transcribedText = await performAudioTranscription(audioPath);
         console.log(transcribedText);
         // Step 2: Perform Text Summarization
-        const summary = await summarizeText(transcribedText);
+        //const summary = await summarizeText(transcribedText);
         console.log(summary);
         if (req.file) fs.unlinkSync(audioPath); // Clean up uploaded file if applicable
 
@@ -113,7 +113,33 @@ async function summarizeText(text) {
         throw new Error('Text summarization failed.');
     }
 }
+// app.post("/api/summarize", async (req, res) => {
+//     const { text } = req.body;
 
+//     if (!text) {
+//         return res.status(400).json({ error: "Text is required for summarization." });
+//     }
+
+//     try {
+//         // Replace with Groq API details
+//         const groqResponse = await axios.post(
+//             "https://api.groq.com/v1/summarize", // Replace with Groq's summarization endpoint
+//             { text }, // Assuming Groq expects a `text` field in the payload
+//             {
+//                 headers: {
+//                     "Content-Type": "application/json",
+//                     Authorization: `Bearer ${process.env.GROQ_API_KEY}`, // Replace with your Groq API key
+//                 },
+//             }
+//         );
+
+//         const summary = groqResponse.data.summary; // Adjust based on Groq's response structure
+//         res.status(200).json({ summary });
+//     } catch (error) {
+//         console.error("Error summarizing text:", error);
+//         res.status(500).json({ error: "Failed to summarize the text. Please try again." });
+//     }
+// });
 // Routes
 app.use('/auth', authRoutes);
 
