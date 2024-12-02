@@ -8,10 +8,9 @@ const groq = new Groq({
 });
 
 const AudioToTextAndSummarize = () => {
-    const [value, setValue] = useState("Upload an audio file or provide a URL to get transcription and summary...");
+    const [value, setValue] = useState("Upload an audio file to get transcription and summary...");
     const [isUploading, setIsUploading] = useState(false);
     const [audioSrc, setAudioSrc] = useState(null);
-    const [audioUrl, setAudioUrl] = useState("");
     const [summary, setSummary] = useState("");
     const key = "91567481288444c29f8a9f4b8f2ca017"; // AssemblyAI Key
 
@@ -26,22 +25,18 @@ const AudioToTextAndSummarize = () => {
     };
 
     const handleTranscribe = async () => {
-        if (!audioSrc && !audioUrl) {
-            alert("Please upload an audio file or enter a URL.");
+        if (!audioSrc) {
+            alert("Please upload an audio file.");
             return;
         }
 
         setIsUploading(true);
         setValue("Uploading file and transcribing...");
         try {
-            let transcript;
-            if (audioUrl) {
-                transcript = await transcribeFromUrl(audioUrl);
-            } else {
-                const response = await fetch(audioSrc);
-                const blob = await response.blob();
-                transcript = await transcribeAudio(blob);
-            }
+            const response = await fetch(audioSrc);
+            const blob = await response.blob();
+            const transcript = await transcribeAudio(blob);
+
             setValue(transcript || "No transcription available.");
             if (transcript) {
                 const summarizedText = await summarizeText(transcript);
@@ -125,87 +120,57 @@ const AudioToTextAndSummarize = () => {
     };
 
     return (
-        <div style={{ textAlign: "center", padding: "20px", fontFamily: "Arial, sans-serif" }}>
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-white via-blue-100 to-blue-300 p-6">
+            <h2 className="text-4xl font-extrabold text-teal-700 bg-gray-100 rounded-lg px-8 py-4 shadow-lg mb-8">
+                Audio Transcription & Summarization
+            </h2>
+
             <textarea
                 value={value}
                 readOnly
-                style={{
-                    width: "100%",
-                    height: "100px",
-                    marginBottom: "10px",
-                    padding: "10px",
-                    fontSize: "16px",
-                    border: "1px solid #ccc",
-                    borderRadius: "5px",
-                }}
+                className="w-full max-w-4xl p-6 mb-6 rounded-lg border border-gray-300 shadow-md focus:ring-2 focus:ring-blue-500 bg-white text-gray-800 text-lg"
+                style={{ height: "200px" }}
             />
-            <br />
+
             <textarea
                 value={summary}
                 readOnly
                 placeholder="Summary will appear here..."
-                style={{
-                    width: "100%",
-                    height: "100px",
-                    marginBottom: "10px",
-                    padding: "10px",
-                    fontSize: "16px",
-                    border: "1px solid #ccc",
-                    borderRadius: "5px",
-                }}
+                className="w-full max-w-4xl p-6 mb-6 rounded-lg border border-gray-300 shadow-md focus:ring-2 focus:ring-green-500 bg-white text-gray-800 text-lg"
+                style={{ height: "200px" }}
             />
-            <br />
+
+            <label
+                htmlFor="audio-upload"
+                className="cursor-pointer inline-block p-4 rounded-lg bg-teal-700 text-white font-bold shadow-md hover:bg-teal-800 focus:ring-2 focus:ring-teal-400 transition-all mb-4"
+            >
+                Choose Audio File
+            </label>
             <input
+                id="audio-upload"
                 type="file"
                 accept="audio/*"
                 onChange={handleFileUpload}
                 disabled={isUploading}
-                style={{
-                    marginBottom: "10px",
-                    padding: "10px",
-                    border: "1px solid #ccc",
-                    borderRadius: "5px",
-                }}
+                className="hidden"
             />
-            <br />
-            <input
-                type="text"
-                placeholder="Enter audio URL"
-                value={audioUrl}
-                onChange={(e) => setAudioUrl(e.target.value)}
-                disabled={isUploading}
-                style={{
-                    width: "100%",
-                    marginBottom: "10px",
-                    padding: "10px",
-                    border: "1px solid #ccc",
-                    borderRadius: "5px",
-                }}
-            />
-            <br />
+
             {audioSrc && (
                 <audio
                     controls
                     src={audioSrc}
-                    style={{
-                        marginBottom: "10px",
-                        width: "100%",
-                        borderRadius: "5px",
-                    }}
+                    className="mt-4 mb-6 w-full max-w-4xl rounded-lg shadow-md"
                 />
             )}
+
             <button
                 onClick={handleTranscribe}
                 disabled={isUploading}
-                style={{
-                    padding: "10px 20px",
-                    fontSize: "16px",
-                    backgroundColor: isUploading ? "#ccc" : "#007BFF",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "5px",
-                    cursor: isUploading ? "not-allowed" : "pointer",
-                }}
+                className={`p-4 w-full max-w-4xl rounded-lg ${
+                    isUploading
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-teal-600 hover:bg-teal-700"
+                } text-white font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-teal-400 transition-all`}
             >
                 {isUploading ? "Processing..." : "Transcribe & Summarize"}
             </button>

@@ -54,53 +54,38 @@ const TextToSpeechAndSummarize = () => {
     };
 
     return (
-        <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-            <h2>Text to Speech and Summarization</h2>
+        <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-teal-50 via-blue-100 to-blue-300 p-6">
+            <h2 className="text-4xl font-extrabold text-teal-700 bg-gray-100 rounded-lg px-8 py-4 shadow-lg mb-8">
+                Text to Speech and Summarization
+            </h2>
 
-            {/* Input Text Area */}
             <textarea
-                rows="6"
+                rows="8"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 placeholder="Enter text to summarize and convert to speech"
-                style={{
-                    width: "100%",
-                    padding: "10px",
-                    marginBottom: "10px",
-                    border: "1px solid #ccc",
-                    borderRadius: "5px",
-                }}
+                className="w-full max-w-4xl p-6 mb-6 rounded-lg border border-gray-300 shadow-md focus:ring-2 focus:ring-blue-500 bg-white text-gray-800 text-lg"
+                style={{ height: "200px" }}
             ></textarea>
 
-            {/* Summary Text Area */}
             <textarea
-                rows="4"
+                rows="6"
                 value={summary}
                 readOnly
                 placeholder="Summary will appear here..."
-                style={{
-                    width: "100%",
-                    padding: "10px",
-                    marginBottom: "10px",
-                    border: "1px solid #ccc",
-                    borderRadius: "5px",
-                }}
+                className="w-full max-w-4xl p-6 mb-6 rounded-lg border border-gray-300 shadow-md focus:ring-2 focus:ring-green-500 bg-white text-gray-800 text-lg"
+                style={{ height: "160px" }}
             ></textarea>
 
-            {/* Buttons */}
-            <div style={{ marginBottom: "10px" }}>
+            <div className="flex flex-wrap justify-center gap-4">
                 <button
                     onClick={handleSummarize}
                     disabled={isSummarizing}
-                    style={{
-                        padding: "10px 20px",
-                        marginRight: "10px",
-                        backgroundColor: isSummarizing ? "#ccc" : "#007BFF",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "5px",
-                        cursor: isSummarizing ? "not-allowed" : "pointer",
-                    }}
+                    className={`p-4 w-60 rounded-lg font-semibold text-white shadow-md focus:outline-none focus:ring-2 transition-all ${
+                        isSummarizing
+                            ? "bg-gray-400 cursor-not-allowed"
+                            : "bg-blue-600 hover:bg-blue-700 focus:ring-blue-400"
+                    }`}
                 >
                     {isSummarizing ? "Summarizing..." : "Summarize"}
                 </button>
@@ -108,15 +93,13 @@ const TextToSpeechAndSummarize = () => {
                 <button
                     onClick={handleTextToSpeech}
                     disabled={!summary.trim()}
-                    style={{
-                        padding: "10px 20px",
-                        marginRight: "10px",
-                        backgroundColor: speaking ? "orange" : "#28A745",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "5px",
-                        cursor: summary.trim() ? "pointer" : "not-allowed",
-                    }}
+                    className={`p-4 w-60 rounded-lg font-semibold text-white shadow-md focus:outline-none focus:ring-2 transition-all ${
+                        speaking
+                            ? "bg-orange-400 hover:bg-orange-500 focus:ring-orange-300"
+                            : summary.trim()
+                            ? "bg-green-600 hover:bg-green-700 focus:ring-green-400"
+                            : "bg-gray-400 cursor-not-allowed"
+                    }`}
                 >
                     {speaking ? "Speaking..." : "Speak Summary"}
                 </button>
@@ -124,14 +107,11 @@ const TextToSpeechAndSummarize = () => {
                 <button
                     onClick={handleStopAudio}
                     disabled={!speaking}
-                    style={{
-                        padding: "10px 20px",
-                        backgroundColor: "#DC3545",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "5px",
-                        cursor: speaking ? "pointer" : "not-allowed",
-                    }}
+                    className={`p-4 w-60 rounded-lg font-semibold text-white shadow-md focus:outline-none focus:ring-2 transition-all ${
+                        speaking
+                            ? "bg-red-600 hover:bg-red-700 focus:ring-red-400"
+                            : "bg-gray-400 cursor-not-allowed"
+                    }`}
                 >
                     Stop Audio
                 </button>

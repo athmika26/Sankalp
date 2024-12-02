@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import SignupPage from './components/SignUp';
 import LoginPage from './components/Login';
+import LearnMore from './components/LearnMore';
 import Dashboard from './components/Dashboard';
 import AudioTextConversion from './components/AudioTextConversion';
 import AudioToText from './components/AudioToText';
@@ -14,6 +15,7 @@ import MemoryMatchGarden from './components/MemoryMatchGarden';
 import MathQuest from './components/MathQuest';
 
 
+
 function App() {
     return (
         <Router>
@@ -22,6 +24,7 @@ function App() {
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/learn-more" element={<LearnMore />} />
                 <Route path="/audio-text-conversion" element={<AudioTextConversion />} />
                 <Route path="/audio-text" element={<AudioToText />} />
                 <Route path="/games" element={<Games />} /> {/* Route to games component */}
