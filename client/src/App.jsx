@@ -13,6 +13,7 @@ import Games from './components/Games';
 import SpellingWordSearch from './components/SpellingWordSearch';
 import MemoryMatchGarden from './components/MemoryMatchGarden';
 import MathQuest from './components/MathQuest';
+import ASL from './components/ASL';
 
 
 
@@ -32,6 +33,7 @@ function App() {
                 <Route path="/games/memory-match-garden" element={<MemoryMatchGarden />} />
                 <Route path="/games/math-quest" element={<MathQuest />} />
                 <Route path='/text-audio' element={<TTS />}></Route>
+                <Route path='/asl' element={<ASL />}></Route>
             </Routes>
         </Router>
     );

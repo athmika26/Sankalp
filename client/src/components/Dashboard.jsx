@@ -19,7 +19,9 @@ const Dashboard = () => {
         <p className="text-gray-700 mb-8">Choose an option below:</p>
         
         <div className="flex flex-col space-y-4">
-          <button className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none">
+          <button 
+            onClick={() => navigate('/asl')}
+            className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none">
             ASL Recognition
           </button>
           
