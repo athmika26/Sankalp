@@ -43,22 +43,17 @@ class GestureClassifier:
                 for i in range(len(hand_landmarks.landmark)):
                     x = hand_landmarks.landmark[i].x
                     y = hand_landmarks.landmark[i].y
-
                     x_.append(x)
                     y_.append(y)
-
                 for i in range(len(hand_landmarks.landmark)):
                     x = hand_landmarks.landmark[i].x
                     y = hand_landmarks.landmark[i].y
                     data_aux.append(x - min(x_))
                     data_aux.append(y - min(y_))
-
             x1 = int(min(x_) * W) - 10
             y1 = int(min(y_) * H) - 10
-
             x2 = int(max(x_) * W) - 10
             y2 = int(max(y_) * H) - 10
-
             prediction = self.model.predict(
                 [np.asarray(data_aux + [0] * (84 - len(data_aux)))]
             )
@@ -75,5 +70,4 @@ class GestureClassifier:
                 3,
                 cv2.LINE_AA,
             )
-
         return predicted_character, frame
